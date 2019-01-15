@@ -1,0 +1,43 @@
+#
+#                    ##        .
+#              ## ## ##       ==
+#           ## ## ## ##      ===
+#       /""""""""""""""""\___/ ===
+#  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+#       \______ o          __/
+#         \    \        __/
+#          \____\______/
+#
+#          |          |
+#       __ |  __   __ | _  __   _
+#      /  \| /  \ /   |/  / _\ |
+#      \__/| \__/ \__ |\_ \__  |
+#
+
+version: "3"
+
+networks:
+  local_net: 
+    external:
+      name: local 
+
+volumes:
+  dbdata:
+    driver: local
+
+services:
+# Application Container
+  apps:
+    image: kankuu/php5-laravel4
+    container_name: apps
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      # - ./mount/to/storage:/var/www/html/storage
+    networks:
+      - local_net
+#    external_links:
+#      - database:database
+    # environment:
+    #   - "DB_PORT=docker_database_port" # default 3306
+    #   - "DB_HOST=docker_database_host" # like an database compose is mysql-database
