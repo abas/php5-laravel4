@@ -36,8 +36,10 @@ services:
       # - ./mount/to/storage:/var/www/html/storage
     networks:
       - local_net
-#    external_links:
-#      - database:database
+    ports:
+      - expose_port:80
+    # external_links:
+    #   - database:database
     # environment:
     #   - "DB_PORT=docker_database_port" # default 3306
     #   - "DB_HOST=docker_database_host" # like an database compose is mysql-database
